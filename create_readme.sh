@@ -5,16 +5,22 @@
 
 # If the user didn't enter a path, use ~ as the default path
 if [ -z "$path" ]; then
-    path="~"
+    path=`realpath ~`
 fi
-# echo "The path entered is: $path"
 
 # 在指定路径下创建.readme.md文件
-touch "$path/.readme.md"
+touch $path/.readme
+echo "readme file $path/.readme"
+
 # 添加alias
 echo "添加 reame, vireadme 命令到 ~/.bashrc"
-echo "alias readme='cat $path/.readme.md'" >> ~/.bashrc
-echo "alias vireadme='vim $path/.readme.md'" >> ~/.bashrc
+if ! grep '^alias readme' ~/.bashrc; then
+    echo "alias readme='cat $path/.readme'" >> ~/.bashrc
+fi
+
+if ! grep "^alias vireadme" ~/.bashrc; then
+    echo "alias vireadme='vim $path/.readme'" >> ~/.bashrc
+fi
 
 # 使alias立即生效
 source ~/.bashrc

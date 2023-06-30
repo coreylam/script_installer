@@ -10,5 +10,8 @@
 
 ```shell
 curl -sLk https://raw.githubusercontent.com/coreylam/script_installer/main/create_readme.sh | sh
+
+# 不使用缓存，重新下载脚本
+curl -sLk https://raw.githubusercontent.com/coreylam/script_installer/main/create_readme.sh  -H "Cache-Control: no-cache" | sh 
 ```
 
