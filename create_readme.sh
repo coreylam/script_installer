@@ -19,4 +19,7 @@ echo "alias vireadme='vim $path/.readme.md'" >> ~/.bashrc
 # 使alias立即生效
 source ~/.bashrc
 
-echo "创建.readme.md文件并添加alias完成！\n通过 readme 命令查看本机的服务说明， vireadme 查看"
+echo "创建.readme.md文件并添加alias完成！"
+echo "命令: "
+echo " - readme : 命令查看本机的服务说明"
+echo " - vireadme : 编辑本机的服务说明"
