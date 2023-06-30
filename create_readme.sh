@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # 获取命令行输入的路径
-read -p "Please enter a path (default is ~): " path
+# read -p "Please enter a path (default is ~): " path
 
 # If the user didn't enter a path, use ~ as the default path
 if [ -z "$path" ]; then
     path="~"
 fi
-echo "The path entered is: $path"
+# echo "The path entered is: $path"
 
 # 在指定路径下创建.readme.md文件
 touch "$path/.readme.md"
