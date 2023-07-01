@@ -10,16 +10,20 @@ fi
 
 # 在指定路径下创建.readme.md文件
 touch $path/.readme
-echo "readme file $path/.readme"
+echo "[info] readme file $path/.readme"
 
 # 添加alias
-echo "添加 reame, vireadme 命令到 ~/.bashrc"
+echo "[info] 添加 reame, vireadme 命令到 ~/.bashrc"
 if ! grep '^alias readme' ~/.bashrc; then
     echo "alias readme='cat $path/.readme'" >> ~/.bashrc
+else
+    echo "[warning] alias readme exists"
 fi
 
 if ! grep "^alias vireadme" ~/.bashrc; then
     echo "alias vireadme='vim $path/.readme'" >> ~/.bashrc
+else
+    echo "[warning] alias vireadme exists"
 fi
 
 # 使alias立即生效
