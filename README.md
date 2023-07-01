@@ -10,12 +10,13 @@
 - 命令
 
 ```shell
-curl --fsSL https://raw.githubusercontent.com/coreylam/script_installer/main/create_readme.sh | sh
+curl -sLk https://raw.githubusercontent.com/coreylam/script_installer/main/shell/create_readme.sh | sh
 ```
 
 # 不使用缓存，重新下载脚本
+
 ```shell
-curl -fsSL https://raw.githubusercontent.com/coreylam/script_installer/main/create_readme.sh  -H "Cache-Control: no-cache" | sh 
+curl -sLk https://raw.githubusercontent.com/coreylam/script_installer/main/shell/create_readme.sh  -H "Cache-Control: no-cache" | sh 
 ```
 
 ## docker 
