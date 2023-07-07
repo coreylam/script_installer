@@ -7,7 +7,7 @@ fi
 
 # 使用sed命令替换参数
 command=$@
-# echo $command
+echo $command
 
 # 遍历输入参数, 获取 -r 后的参数（处理非 requirements.txt 的情况）
 while [[ "$#" -gt 0 ]]; do
@@ -22,31 +22,31 @@ while [[ "$#" -gt 0 ]]; do
   shift
 done
 
-requirements=$(cat $x | grep -vE '^\s*#|^\s*$')
-
 # 使用sed命令替换参数
 command=$(echo "$command" | sed 's/\(-r\) [^ ]*/\1 \/tmp\/temp.txt/g')
 
 echo "==================" > /tmp/install_success_log
 echo "==================" > /tmp/install_fail_log
 # 针对每个临时文件进行pip安装
-for req in $requirements; do
+while IFS= read -r line; do
+  echo $command
   # 创建临时文件
-  echo $req > /tmp/temp.txt
+  echo $line > /tmp/temp.txt
+  cat /tmp/temp.txt
   # 安装临时文件中指定的包
-#   echo $command
   $command
 
   # 记录安装结果
   if [ $? -eq 0 ]; then
-    echo "Package $req installed successfully" >> /tmp/install_success_log
+    echo "Package $line installed successfully" >> /tmp/install_success_log
   else
-    echo "Failed to install package $req" >> /tmp/install_fail_log
+    echo "Failed to install package $line" >> /tmp/install_fail_log
   fi
 
   # 删除临时文件
   rm /tmp/temp.txt
-done
+done < "$x"
+
 
 
 cat /tmp/install_success_log
