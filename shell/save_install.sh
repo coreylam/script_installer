@@ -1,7 +1,18 @@
 #!/bin/bash
 # 检查输入参数是否为空
 if [ $# -eq 0 ]; then
-  echo "请输入参数"
+  echo ""
+  echo "# 脚本+正常的安装命令"
+  echo "./save_install.sh pip install -r requirements.txt"
+  echo ""
+  echo "# 支持使用其他pip版本，如"
+  echo "./save_install.sh pip2 install -r requirements.txt"
+  echo "./save_install.sh pip3 install -r requirements.txt"
+  echo "./save_install.sh python -m pip install -r requirements.txt"
+  echo ""
+  echo "# 支持其他依赖包文件名称，如"
+  echo "./save_install.sh pip install -r requirements_arm.txt"
+  echo ""
   exit 1
 fi
 
