@@ -18,7 +18,34 @@ curl -sLk https://raw.githubusercontent.com/coreylam/script_installer/main/shell
 ```shell
 curl -sLk https://raw.githubusercontent.com/coreylam/script_installer/main/shell/create_readme.sh  -H "Cache-Control: no-cache" | sh 
 ```
+### save_install
 
+- 说明
+在 python 中使用 pip install -r requirements.txt 安装时，容易出现当某一个包安装失败，则整个安装结束的情况，在一些无人值守任务上希望即使部分包安装失败，也继续安装其他依赖包。 一般有几种方式：
+- 使用 `pip install -r requirements.txt --ignore-installed` ，能够在忽略已安装的，但对于安装失败，或者版本根本找不到，似乎不起作用
+- 使用 `pip install $(grep -v '^#' requirements.txt | xargs)`, 逐行安装 requirements.txt，能够实现失败后继续往下安装，但对于 requirements.txt 存在一些复杂语法，例如 `MySQL-python ; sys_platform != 'win32'` 之类，则依旧失败
+
+因此，单独写了个小脚本，用于实现跳过 requirements.txt 中的安装失败/错误 的包，但又最大限度保持兼容
+
+```shell
+curl -sLk https://raw.githubusercontent.com/coreylam/script_installer/main/shell/save_install.sh
+chmod +x save_install.sh
+```
+
+使用方法：
+
+```shell
+# 脚本+正常的安装命令
+./save_install.sh pip install -r requirements.txt
+
+# 支持使用其他pip版本，如
+./save_install.sh pip2 install -r requirements.txt
+./save_install.sh pip3 install -r requirements.txt
+./save_install.sh python -m pip install -r requirements.txt
+
+# 支持其他依赖包文件名称，如
+./save_install.sh pip install -r requirements_arm.txt
+```
 ## docker 
 
 
