@@ -18,7 +18,7 @@ fi
 
 # 使用sed命令替换参数
 command=$@
-echo $command
+# echo $command
 
 # 遍历输入参数, 获取 -r 后的参数（处理非 requirements.txt 的情况）
 while [[ "$#" -gt 0 ]]; do
@@ -40,7 +40,7 @@ echo "==================" > /tmp/install_success_log
 echo "==================" > /tmp/install_fail_log
 # 针对每个临时文件进行pip安装
 while IFS= read -r line; do
-  echo $command
+  # echo $command
   # 创建临时文件
   echo $line > /tmp/temp.txt
   cat /tmp/temp.txt
