@@ -28,7 +28,7 @@ curl -sLk https://raw.githubusercontent.com/coreylam/script_installer/main/shell
 因此，单独写了个小脚本，用于实现跳过 requirements.txt 中的安装失败/错误 的包，但又最大限度保持兼容
 
 ```shell
-curl -sLk https://raw.githubusercontent.com/coreylam/script_installer/main/shell/save_install.sh
+curl -sLk https://raw.githubusercontent.com/coreylam/script_installer/main/shell/save_install.sh -o save_install.sh
 chmod +x save_install.sh
 ```
 
